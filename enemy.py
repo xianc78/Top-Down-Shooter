@@ -58,6 +58,13 @@ class Enemy:
 				self.threshold = 20
 				self.change_direction()
 			self.rect.x += self.change_x
+			for wall in self.game.wall_list:
+				if self.rect.colliderect(wall.rect):
+					if self.change_x > 0:
+						self.rect.right = wall.rect.left
+					else:
+						self.rect.left = wall.rect.right
+					self.change_y = random.choice([5, -5])
 			if self.rect.left < 0:
 				self.rect.left = 0
 				self.steps = 0
@@ -69,6 +76,13 @@ class Enemy:
 				self.threshold = 20
 				self.change_x *= -1
 			self.rect.y += self.change_y
+			for wall in self.game.wall_list:
+				if self.rect.colliderect(wall.rect):
+					if self.change_y > 0:
+						self.rect.bottom = wall.rect.top
+					else:
+						self.rect.top = wall.rect.bottom
+					self.change_x = random.choice([5, -5])
 			if self.rect.top < 0:
 				self.rect.top = 0
 				self.steps = 0
@@ -79,26 +93,12 @@ class Enemy:
 				self.steps = 0
 				self.threshold = 20
 				self.change_y *= -1
-			for wall in self.game.wall_list:
-				if self.rect.colliderect(wall.rect):
-					if self.change_x > 0:
-						self.rect.right = wall.rect.left
-					else:
-						self.rect.left = wall.rect.right
-					self.change_y = random.choice([5, -5])
-			
+				
 			if (self.change_x != 0) or (self.change_y != 0):
 				self.index += 1
 				if self.index >= 12:
 					self.index = 0
 				self.image = self.frames[self.index//4]
-			for wall in self.game.wall_list:
-				if self.rect.colliderect(wall.rect):
-					if self.change_y > 0:
-						self.rect.bottom = wall.rect.top
-					else:
-						self.rect.top = wall.rect.bottom
-					self.change_x = random.choice([5, -5])
 		
 			for enemy in self.game.enemy_list:
 				if self.rect.colliderect(enemy.rect):

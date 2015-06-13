@@ -34,7 +34,7 @@ class level1(level):
 		self.layout = [
 		" wwwwwww",
 		"ewwwwww ",
-		"   eeww ",
-		"wwwwwwww"
+		"   ee   ",
+		"wwwwwww "
 		]
 		self.create_level()

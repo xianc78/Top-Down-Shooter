@@ -27,7 +27,6 @@ class Game:
 		self.wall_list = self.level.wall_list
 		self.player = Player(0, 0, self)
 		self.mode = "menu"
-		self.level = None
 		self.mouse = pygame.image.load("resources/cursor.png")
 		pygame.mouse.set_visible(0)
 		
