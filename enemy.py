@@ -64,7 +64,9 @@ class Enemy:
 						self.rect.right = wall.rect.left
 					else:
 						self.rect.left = wall.rect.right
-					self.change_y = random.choice([5, -5])
+					self.change_direction()
+					#self.change_x *= -1
+					#self.change_y = random.choice([5, -5])
 			if self.rect.left < 0:
 				self.rect.left = 0
 				self.steps = 0
@@ -82,7 +84,9 @@ class Enemy:
 						self.rect.bottom = wall.rect.top
 					else:
 						self.rect.top = wall.rect.bottom
-					self.change_x = random.choice([5, -5])
+					self.change_direction()
+					#self.change_y *= -1
+					#self.change_x = random.choice([5, -5])
 			if self.rect.top < 0:
 				self.rect.top = 0
 				self.steps = 0

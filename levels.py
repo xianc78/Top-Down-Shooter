@@ -32,9 +32,10 @@ class level1(level):
 	def __init__(self, game):
 		self.game = game
 		self.layout = [
-		" wwwwwww",
-		"ewwwwww ",
-		"   ee   ",
-		"wwwwwww "
+		"   wwwww e",
+		"        e ",
+		"     wwwww",
+		"www  wwwww",
+		"ee    wwww"
 		]
 		self.create_level()

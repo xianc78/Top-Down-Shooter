@@ -18,7 +18,9 @@ class Game:
 		self.score = 0
 		self.lives = 3
 		self.running = True
-		self.level = levels.level1(self)
+		self.level_list = [levels.level1]
+		self.levelno = 1
+		self.level = self.level_list[self.levelno - 1](self)
 		'''
 		self.enemy_list = [Enemy(48, 67, self), Enemy(32, 124, self), Enemy(67, 176, self)]
 		self.wall_list = [wall(56, 74)]
