@@ -51,7 +51,7 @@ class Game:
 			screen.blit(gameOverText.text, gameOverText.rect)
 		pygame.display.update()
 		
-	def check_events(self):
+	def check_events(self, screen):
 		if self.mode == "game":
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
@@ -59,8 +59,13 @@ class Game:
 				elif event.type == pygame.KEYDOWN:
 					if event.key == pygame.K_SPACE:
 						self.player.shoot()
+					elif event.key == pygame.K_F12:
+						pygame.image.save(screen, "screenshot.png")
+					'''
+					# For debuging purposes
 					elif event.key == pygame.K_r:
 						self.mode = "gameover"
+					'''
 			pressed = pygame.key.get_pressed()
 			self.player.change_x = 0
 			self.player.change_y = 0

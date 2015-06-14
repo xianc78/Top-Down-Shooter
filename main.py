@@ -14,7 +14,7 @@ def main():
 	while True:
 		#print game.mode
 		game.update_screen(screen)
-		game.check_events()
+		game.check_events(screen)
 		game.run_logic()
 		clock.tick(constants.FPS)
 		
