@@ -1,6 +1,7 @@
 import pygame, sys
 from enemy import Enemy
 from tile import *
+from player import Player
 pygame.init()
 
 class level:
@@ -19,6 +20,8 @@ class level:
 					self.enemy_list.append(Enemy(x, y, self.game))
 				elif tile == " ":
 					pass
+				elif tile == "p":
+					self.player = Player(x, y, self.game)
 				else:
 					print tile + " is not a valid character."
 					raw_input("<press enter>")
@@ -32,8 +35,8 @@ class level1(level):
 	def __init__(self, game):
 		self.game = game
 		self.layout = [
-		"   wwwww e",
-		"        e ",
+		"   wwwww ew",
+		" p      e w",
 		"     wwwww",
 		"www  wwwww",
 		"ee    wwww"

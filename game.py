@@ -6,10 +6,11 @@ from enemy import Enemy
 from tile import *
 pygame.init()
 
+# In game text
 titleText = textfunctions.titleText()
 gameOverText = textfunctions.gameOverText()
 
-# Exactly what it says.
+# Class that represents the game as a whole
 class Game:
 	bullet_list = []
 	enemy_list = []
@@ -18,6 +19,7 @@ class Game:
 		self.score = 0
 		self.lives = 3
 		self.running = True
+		# Set level
 		self.level_list = [levels.level1]
 		self.levelno = 1
 		self.level = self.level_list[self.levelno - 1](self)
@@ -25,9 +27,11 @@ class Game:
 		self.enemy_list = [Enemy(48, 67, self), Enemy(32, 124, self), Enemy(67, 176, self)]
 		self.wall_list = [wall(56, 74)]
 		'''
+		# Set game objects
 		self.enemy_list = self.level.enemy_list
 		self.wall_list = self.level.wall_list
-		self.player = Player(0, 0, self)
+		self.player = self.level.player
+		#self.player = Player(0, 0, self)
 		self.mode = "menu"
 		self.mouse = pygame.image.load("resources/cursor.png")
 		pygame.mouse.set_visible(0)
