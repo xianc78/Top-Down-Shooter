@@ -38,6 +38,7 @@ class Game:
 		
 	def update_screen(self, screen):
 		if self.mode == "game":
+			pygame.display.set_caption("Top Down Shooter | HP: " + str(self.player.health))
 			screen.fill(constants.BLACK)
 			for bullet in self.bullet_list:
 				screen.blit(bullet.image, (bullet.rect.x, bullet.rect.y))
@@ -49,6 +50,7 @@ class Game:
 			# Blit cursor last.
 			screen.blit(self.mouse, pygame.mouse.get_pos())
 		elif self.mode == "menu":
+			screen.fill(constants.BLACK)
 			screen.blit(titleText.text, titleText.rect)
 		elif self.mode == "gameover":
 			screen.fill(constants.BLACK)
@@ -85,12 +87,18 @@ class Game:
 			elif pressed[pygame.K_RIGHT]:
 				self.player.facing = "r"
 				self.player.change_x = 5
-		elif (self.mode == "menu") or (self.mode == "gameover"):
+		elif (self.mode == "menu"):# or (self.mode == "gameover"):
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					self.terminate()
 				elif event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
 					self.mode = "game"
+		elif self.mode == "gameover":
+			for event in pygame.event.get():
+				if event.type == pygame.QUIT:
+					self.terminate()
+				elif event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+					self.__init__()
 		
 	def run_logic(self):
 		if self.mode == "game":

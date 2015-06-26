@@ -14,6 +14,8 @@ class Player:
 	change_y = 0
 	# Health
 	health = 100
+	# Recovery time
+	recovery = 0
 	
 	def __init__(self, x, y, game):
 		self.game = game
@@ -66,6 +68,8 @@ class Player:
 		self.facing = "d"
 		
 	def update(self):
+		if self.recovery > 0:
+			self.recovery -= 1
 		# Animate the image
 		if (self.change_x != 0) or (self.change_y != 0):
 			self.index += 1
@@ -96,7 +100,11 @@ class Player:
 				if enemy.dead:
 					pass
 				else:
-					self.health -= 10
+					if self.recovery <= 0:
+						self.health -= 10
+						self.recovery = 20
+					else:
+						pass
 		for wall in self.game.wall_list:
 			if self.rect.colliderect(wall.rect):
 				if self.change_y > 0:
@@ -111,6 +119,10 @@ class Player:
 			self.rect.top = 0
 		elif self.rect.bottom > constants.SCREEN_HEIGHT:
 			self.rect.bottom = constants.SCREEN_HEIGHT
+			
+		# Check status
+		if self.health <= 0:
+			self.game.mode = "gameover"
 		
 	def shoot(self):
 		sounds.laserSound.play()
