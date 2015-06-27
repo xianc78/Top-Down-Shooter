@@ -94,11 +94,14 @@ class Player:
 					self.rect.left = wall.rect.right
 		if self.rect.colliderect(self.game.finish.rect):
 			self.game.levelno += 1
+			self.game.set_level(self.game.level_list[self.game.levelno - 1])
+			'''
 			self.game.level = self.game.level_list[self.game.levelno - 1](self.game)
 			self.game.enemy_list = self.game.level.enemy_list
 			self.game.wall_list = self.game.level.wall_list
 			self.game.player = self.game.level.player
 			self.game.finish = self.game.level.finish
+			'''
 					
 		self.rect.y += self.change_y
 		

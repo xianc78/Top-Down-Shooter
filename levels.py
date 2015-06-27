@@ -4,12 +4,18 @@ from tile import *
 from player import Player
 pygame.init()
 
-class level:
-	bullet_list = []
-	enemy_list = []
-	enemys = []
-	tile_list = []
-	wall_list = []
+class level():
+	bullet_list = None
+	enemy_list = None
+	tile_list = None
+	wall_list = None
+	def __init__(self, game):
+		self.game = game
+		self.bullet_list = []
+		self.enemy_list = []
+		self.enemys = []
+		self.tile_list = []
+		self.wall_list = []
 	def create_level(self):
 		x = y = 0
 		for r in self.layout:
@@ -35,7 +41,8 @@ class level:
 		
 class level1(level):
 	def __init__(self, game):
-		self.game = game
+		level.__init__(self, game)
+		#self.game = game
 		self.layout = [
 		"   wwwww ew",
 		" p      e w",
@@ -48,7 +55,8 @@ class level1(level):
 class level2(level):
 # Something is going wrong with the second level. Will fix it later.
 	def __init__(self, game):
-		self.game = game
+		level.__init__(self, game)
+		#self.game = game
 		self.layout = [
 		"wwwwwwwwww",
 		"wpwww     ",

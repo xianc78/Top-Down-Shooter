@@ -23,7 +23,8 @@ class Game:
 		# Set level
 		self.level_list = [levels.level1, levels.level2]
 		self.levelno = 1
-		self.level = self.level_list[self.levelno - 1](self)
+		#self.level = levels.level2(self)
+		self.set_level(self.level_list[self.levelno -1])
 		'''
 		self.enemy_list = [Enemy(48, 67, self), Enemy(32, 124, self), Enemy(67, 176, self)]
 		self.wall_list = [wall(56, 74)]
@@ -110,6 +111,13 @@ class Game:
 				bullet.update()
 			for enemy in self.enemy_list:
 				enemy.update()
+				
+	def set_level(self, level):
+		self.level = level(self)
+		self.enemy_list = self.level.enemy_list
+		self.wall_list = self.level.wall_list
+		self.player = self.level.player
+		self.finish = self.level.finish
 		
 	def terminate(self):
 		pygame.quit()
