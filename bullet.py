@@ -18,7 +18,10 @@ class Bullet:
 		self.rect.y += self.change_y
 		for wall in self.game.wall_list:
 			if self.rect.colliderect(wall.rect):
-				self.game.bullet_list.remove(self)
+				try:
+					self.game.bullet_list.remove(self)
+				except ValueError:
+					pass
 		if self.check_bounderies() == True:
 			self.game.bullet_list.remove(self)
 		

@@ -22,6 +22,8 @@ class level:
 					pass
 				elif tile == "p":
 					self.player = Player(x, y, self.game)
+				elif tile == "f":
+					self.finish = finish(x, y)
 				else:
 					print tile + " is not a valid character."
 					raw_input("<press enter>")
@@ -37,8 +39,21 @@ class level1(level):
 		self.layout = [
 		"   wwwww ew",
 		" p      e w",
-		"     wwwww",
-		"www  wwwww",
-		"ee    wwww"
+		"     wwwwww",
+		"www  wwwwww",
+		"ee   fwwwww"
+		]
+		self.create_level()
+		
+class level2(level):
+# Something is going wrong with the second level. Will fix it later.
+	def __init__(self, game):
+		self.game = game
+		self.layout = [
+		"wwwwwwwwww",
+		"wpwww     ",
+		"w e  e www",
+		"www wwwwww",
+		"         f"
 		]
 		self.create_level()

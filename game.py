@@ -1,3 +1,4 @@
+# Import everything needed
 import pygame, sys
 import constants, textfunctions, sounds, levels
 from player import Player
@@ -20,7 +21,7 @@ class Game:
 		self.lives = 3
 		self.running = True
 		# Set level
-		self.level_list = [levels.level1]
+		self.level_list = [levels.level1, levels.level2]
 		self.levelno = 1
 		self.level = self.level_list[self.levelno - 1](self)
 		'''
@@ -31,6 +32,7 @@ class Game:
 		self.enemy_list = self.level.enemy_list
 		self.wall_list = self.level.wall_list
 		self.player = self.level.player
+		self.finish = self.level.finish
 		#self.player = Player(0, 0, self)
 		self.mode = "menu"
 		self.mouse = pygame.image.load("resources/cursor.png")
@@ -46,6 +48,7 @@ class Game:
 				screen.blit(enemy.image, (enemy.rect.x, enemy.rect.y))
 			for wall in self.wall_list:
 				screen.blit(wall.image, (wall.rect.x, wall.rect.y))
+			screen.blit(self.finish.image, (self.finish.rect.x, self.finish.rect.y))
 			screen.blit(self.player.image, (self.player.rect.x, self.player.rect.y))
 			# Blit cursor last.
 			screen.blit(self.mouse, pygame.mouse.get_pos())
