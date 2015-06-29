@@ -94,7 +94,10 @@ class Player:
 					self.rect.left = wall.rect.right
 		if self.rect.colliderect(self.game.finish.rect):
 			self.game.levelno += 1
-			self.game.set_level(self.game.level_list[self.game.levelno - 1])
+			try:
+				self.game.set_level(self.game.level_list[self.game.levelno - 1])
+			except IndexError:
+				self.game.mode = "gameover"
 			'''
 			self.game.level = self.game.level_list[self.game.levelno - 1](self.game)
 			self.game.enemy_list = self.game.level.enemy_list
@@ -104,6 +107,12 @@ class Player:
 			'''
 					
 		self.rect.y += self.change_y
+		if self.rect.colliderect(self.game.finish.rect):
+			self.game.levelno += 1
+			try:
+				self.game.set_level(self.game.level_list[self.game.levelno - 1])
+			except IndexError:
+				self.game.mode = "gameover"
 		
 		# Check collisions
 		for enemy in self.game.enemy_list:
