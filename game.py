@@ -91,7 +91,7 @@ class Game:
 			elif pressed[pygame.K_RIGHT]:
 				self.player.facing = "r"
 				self.player.change_x = 5
-		elif (self.mode == "menu"):# or (self.mode == "gameover"):
+		elif (self.mode == "menu"):
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					self.terminate()

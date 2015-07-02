@@ -58,6 +58,7 @@ class Enemy:
 				self.threshold = 20
 				self.change_direction()
 			self.rect.x += self.change_x
+			# Check horizontal collision
 			for wall in self.game.wall_list:
 				if self.rect.colliderect(wall.rect):
 					if self.change_x > 0:
@@ -65,8 +66,15 @@ class Enemy:
 					else:
 						self.rect.left = wall.rect.right
 					self.change_direction()
+			if self.rect.colliderect(self.game.finish.rect):
+				if self.change_x > 0:
+					self.rect.right = self.game.finish.rect.left
+				else:
+					self.rect.left = self.game.finish.rect.right
+				self.change_direction()
 					#self.change_x *= -1
 					#self.change_y = random.choice([5, -5])
+					
 			if self.rect.left < 0:
 				self.rect.left = 0
 				self.steps = 0
@@ -77,7 +85,9 @@ class Enemy:
 				self.steps = 0
 				self.threshold = 20
 				self.change_x *= -1
+				
 			self.rect.y += self.change_y
+			# Check vertical collision
 			for wall in self.game.wall_list:
 				if self.rect.colliderect(wall.rect):
 					if self.change_y > 0:
@@ -85,6 +95,12 @@ class Enemy:
 					else:
 						self.rect.top = wall.rect.bottom
 					self.change_direction()
+			if self.rect.colliderect(self.game.finish.rect):
+				if self.change_y > 0:
+					self.rect.bottom = self.game.finish.rect.top
+				else:
+					self.rect.top = self.game.finish.rect.bottom
+				self.change_direction()
 					#self.change_y *= -1
 					#self.change_x = random.choice([5, -5])
 			if self.rect.top < 0:

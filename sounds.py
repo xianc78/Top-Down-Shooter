@@ -1,4 +1,10 @@
-import pygame.mixer
-pygame.mixer.init()
+import pygame, sys
+pygame.init()
 
-laserSound = pygame.mixer.Sound("resources/laser.wav")
+try:
+	laserSound = pygame.mixer.Sound("resources/laser.wav")
+except pygame.error:
+	print "laser.wav doesn't exist."
+	raw_input("<press enter>")
+	pygame.quit()
+	sys.exit()

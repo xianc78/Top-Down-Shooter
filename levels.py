@@ -44,11 +44,14 @@ class level1(level):
 		level.__init__(self, game)
 		#self.game = game
 		self.layout = [
-		"   wwwww ew",
-		" p      e w",
-		"     wwwwww",
-		"www  wwwwww",
-		"ee   fwwwww"
+		"   wwwww eww",
+		" p      e ww",
+		"     wwwwwww",
+		"www  wwwwwww",
+		"ee   wwwwwww",
+		"www  wwwwwww",
+		"           f",
+		"wwwwwwwwwwwww"
 		]
 		self.create_level()
 		
