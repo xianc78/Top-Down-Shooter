@@ -64,24 +64,25 @@ class level2(level):
 		level.__init__(self, game)
 		#self.game = game
 		self.layout = [
-		"wwwwwwwwww",
-		"wpwww     ",
-		"w e  e www",
-		"ww  wwwwww",
-		"    e   ew",
-		" e fwwwwww",
+		"wwwwwwwwwwwwwwwwwwww",
+		"wpwww    h    e    w",
+		"w e  e wwww  e e   w",
+		"ww  wwwwwww h  h   w",
+		" h  e   ew  e  e  fw",
+		" e wwwwwwwwwwwwwwwww",
 		"wwwwwwwwww"
 		]
 		self.create_level()
 		
 class level3(level):
 	def __init__(self, game):
+		level.__init__(self, game)
 		self.layout = [
-		"wwwwwwwwwww",
-		"w  e  e   w",
-		"w    h    w",
-		"w h   e   w",
-		"we e   e  f",
-		"wwwwwwwwwww"
+		"wwwwwwwwwwwwwwwwwwww",
+		"wp e  e   w    e   w",
+		"w    h    w h    e w",
+		"w h   e   w e   h  w",
+		"we e   e       e   f",
+		"wwwwwwwwwwwwwwwwwwww"
 		]
 		self.create_level()

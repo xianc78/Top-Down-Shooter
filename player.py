@@ -84,8 +84,9 @@ class Player:
 			elif self.facing == "r":
 				self.image = self.frames_r[self.index//6]
 				
-		# Move the object		
+		# Move the object horizontally	
 		self.rect.x += self.change_x
+		
 		for wall in self.game.wall_list:
 			if self.rect.colliderect(wall.rect):
 				if self.change_x > 0:
@@ -111,16 +112,17 @@ class Player:
 			self.game.player = self.game.level.player
 			self.game.finish = self.game.level.finish
 			'''
-					
+		
+		# Move the object vertically
 		self.rect.y += self.change_y
+		
+		# Check collisions
 		if self.rect.colliderect(self.game.finish.rect):
 			self.game.levelno += 1
 			try:
 				self.game.set_level(self.game.level_list[self.game.levelno - 1])
 			except IndexError:
 				self.game.mode = "gameover"
-		
-		# Check collisions
 		for enemy in self.game.enemy_list:
 			if self.rect.colliderect(enemy.rect):
 				if enemy.dead:
@@ -142,6 +144,8 @@ class Player:
 				if self.health < 100:
 					self.health += 10
 					self.game.healthpack_list.remove(healthpack)
+					
+		# Check collision with the edges of the screen.
 		if self.rect.left < 0:
 			self.rect.left = 0
 		elif self.rect.right > constants.SCREEN_WIDTH:

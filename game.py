@@ -21,7 +21,7 @@ class Game:
 		self.lives = 3
 		self.running = True
 		# Set level
-		self.level_list = [levels.level1, levels.level2]
+		self.level_list = [levels.level1, levels.level2, levels.level3]
 		self.levelno = 1
 		#self.level = levels.level2(self)
 		self.set_level(self.level_list[self.levelno -1])
@@ -118,8 +118,18 @@ class Game:
 		self.level = level(self)
 		self.enemy_list = self.level.enemy_list
 		self.wall_list = self.level.wall_list
-		self.player = self.level.player
-		self.finish = self.level.finish
+		try:
+			self.player = self.level.player
+		except AttributeError:
+			print "This level does not have a player."
+			raw_input("<press enter>")
+			self.terminate()
+		try:
+			self.finish = self.level.finish
+		except AttributeError:
+			print "This level does not have a finish."
+			raw_input("<press enter>")
+			self.terminate()
 		self.healthpack_list = self.level.healthpack_list
 		
 	def terminate(self):
