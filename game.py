@@ -49,6 +49,8 @@ class Game:
 				screen.blit(enemy.image, (enemy.rect.x, enemy.rect.y))
 			for wall in self.wall_list:
 				screen.blit(wall.image, (wall.rect.x, wall.rect.y))
+			for healthpack in self.healthpack_list:
+				screen.blit(healthpack.image, (healthpack.rect.x, healthpack.rect.y))
 			screen.blit(self.finish.image, (self.finish.rect.x, self.finish.rect.y))
 			screen.blit(self.player.image, (self.player.rect.x, self.player.rect.y))
 			# Blit cursor last.
@@ -118,6 +120,7 @@ class Game:
 		self.wall_list = self.level.wall_list
 		self.player = self.level.player
 		self.finish = self.level.finish
+		self.healthpack_list = self.level.healthpack_list
 		
 	def terminate(self):
 		pygame.quit()

@@ -92,7 +92,13 @@ class Player:
 					self.rect.right = wall.rect.left
 				else:
 					self.rect.left = wall.rect.right
+		for healthpack in self.game.healthpack_list:
+			if self.rect.colliderect(healthpack.rect):
+				if self.health < 100:
+					self.health += 10
+					self.game.healthpack_list.remove(healthpack)
 		if self.rect.colliderect(self.game.finish.rect):
+			#self.game.update_screen()
 			self.game.levelno += 1
 			try:
 				self.game.set_level(self.game.level_list[self.game.levelno - 1])
@@ -131,6 +137,11 @@ class Player:
 					self.rect.bottom = wall.rect.top
 				else:
 					self.rect.top = wall.rect.bottom
+		for healthpack in self.game.healthpack_list:
+			if self.rect.colliderect(healthpack.rect):
+				if self.health < 100:
+					self.health += 10
+					self.game.healthpack_list.remove(healthpack)
 		if self.rect.left < 0:
 			self.rect.left = 0
 		elif self.rect.right > constants.SCREEN_WIDTH:
@@ -143,6 +154,8 @@ class Player:
 		# Check status
 		if self.health <= 0:
 			self.game.mode = "gameover"
+		elif self.health > 100:
+			self.health = 100
 		
 	def shoot(self):
 		sounds.laserSound.play()

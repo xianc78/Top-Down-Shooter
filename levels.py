@@ -9,6 +9,7 @@ class level():
 	enemy_list = None
 	tile_list = None
 	wall_list = None
+	healthpack_list = None
 	def __init__(self, game):
 		self.game = game
 		self.bullet_list = []
@@ -16,6 +17,7 @@ class level():
 		self.enemys = []
 		self.tile_list = []
 		self.wall_list = []
+		self.healthpack_list = []
 	def create_level(self):
 		x = y = 0
 		for r in self.layout:
@@ -28,6 +30,8 @@ class level():
 					pass
 				elif tile == "p":
 					self.player = Player(x, y, self.game)
+				elif tile == "h":
+					self.healthpack_list.append(healthpack(x, y))
 				elif tile == "f":
 					self.finish = finish(x, y)
 				else:
@@ -45,18 +49,17 @@ class level1(level):
 		#self.game = game
 		self.layout = [
 		"   wwwww eww",
-		" p      e ww",
+		" p h    e ww",
 		"     wwwwwww",
 		"www  wwwwwww",
 		"ee   wwwwwww",
 		"www  wwwwwww",
-		"           f",
+		"   h   h   f",
 		"wwwwwwwwwwwww"
 		]
 		self.create_level()
 		
 class level2(level):
-# Something is going wrong with the second level. Will fix it later.
 	def __init__(self, game):
 		level.__init__(self, game)
 		#self.game = game
@@ -64,7 +67,21 @@ class level2(level):
 		"wwwwwwwwww",
 		"wpwww     ",
 		"w e  e www",
-		"www wwwwww",
-		"         f"
+		"ww  wwwwww",
+		"    e   ew",
+		" e fwwwwww",
+		"wwwwwwwwww"
+		]
+		self.create_level()
+		
+class level3(level):
+	def __init__(self, game):
+		self.layout = [
+		"wwwwwwwwwww",
+		"w  e  e   w",
+		"w    h    w",
+		"w h   e   w",
+		"we e   e  f",
+		"wwwwwwwwwww"
 		]
 		self.create_level()

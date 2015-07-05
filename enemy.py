@@ -49,95 +49,102 @@ class Enemy:
 		
 		self.steps = 0
 		self.threshold = 20
+		self.cool_down = 0
 		
 	def update(self):
 		if not self.dead:
-			self.steps += 1
-			if self.steps >= self.threshold:
-				self.steps = 0
-				self.threshold = 20
-				self.change_direction()
-			self.rect.x += self.change_x
-			# Check horizontal collision
-			for wall in self.game.wall_list:
-				if self.rect.colliderect(wall.rect):
-					if self.change_x > 0:
-						self.rect.right = wall.rect.left
-					else:
-						self.rect.left = wall.rect.right
+			if self.cool_down <= 0:
+				self.steps += 1
+				if self.steps >= self.threshold:
+					self.steps = 0
+					#self.threshold = 20
+					self.threshold = random.randint(10, 20)
+					self.cool_down = 20
 					self.change_direction()
-			if self.rect.colliderect(self.game.finish.rect):
-				if self.change_x > 0:
-					self.rect.right = self.game.finish.rect.left
-				else:
-					self.rect.left = self.game.finish.rect.right
-				self.change_direction()
-					#self.change_x *= -1
-					#self.change_y = random.choice([5, -5])
-					
-			if self.rect.left < 0:
-				self.rect.left = 0
-				self.steps = 0
-				self.threshold = 20
-				self.change_x *= -1
-			elif self.rect.right > constants.SCREEN_WIDTH:
-				self.rect.right = constants.SCREEN_WIDTH
-				self.steps = 0
-				self.threshold = 20
-				self.change_x *= -1
-				
-			self.rect.y += self.change_y
-			# Check vertical collision
-			for wall in self.game.wall_list:
-				if self.rect.colliderect(wall.rect):
-					if self.change_y > 0:
-						self.rect.bottom = wall.rect.top
-					else:
-						self.rect.top = wall.rect.bottom
-					self.change_direction()
-			if self.rect.colliderect(self.game.finish.rect):
-				if self.change_y > 0:
-					self.rect.bottom = self.game.finish.rect.top
-				else:
-					self.rect.top = self.game.finish.rect.bottom
-				self.change_direction()
-					#self.change_y *= -1
-					#self.change_x = random.choice([5, -5])
-			if self.rect.top < 0:
-				self.rect.top = 0
-				self.steps = 0
-				self.threshold = 20
-				self.change_y *= -1
-			elif self.rect.bottom > constants.SCREEN_HEIGHT:
-				self.rect.bottom = constants.SCREEN_HEIGHT
-				self.steps = 0
-				self.threshold = 20
-				self.change_y *= -1
-				
-			if (self.change_x != 0) or (self.change_y != 0):
-				self.index += 1
-				if self.index >= 12:
-					self.index = 0
-				self.image = self.frames[self.index//4]
-		
-			for enemy in self.game.enemy_list:
-				if self.rect.colliderect(enemy.rect):
-					if enemy == self:
-						pass
-					else:
+				self.rect.x += self.change_x
+				# Check horizontal collision
+				for wall in self.game.wall_list:
+					if self.rect.colliderect(wall.rect):
+						if self.change_x > 0:
+							self.rect.right = wall.rect.left
+						else:
+							self.rect.left = wall.rect.right
 						self.change_direction()
-						'''
-						self.change_x *= -1
-						self.change_y *= -1
-						'''
-			for bullet in self.game.bullet_list:
-				if self.rect.colliderect(bullet.rect):
-					try:
-						self.game.bullet_list.remove(self)
-					except ValueError:
-						pass
-					self.dead = True
-					#self.game.enemy_list.remove(self)
+				if self.rect.colliderect(self.game.finish.rect):
+					if self.change_x > 0:
+						self.rect.right = self.game.finish.rect.left
+					else:
+						self.rect.left = self.game.finish.rect.right
+					self.change_direction()
+						#self.change_x *= -1
+						#self.change_y = random.choice([5, -5])
+			
+					
+				if self.rect.left < 0:
+					self.rect.left = 0
+					self.steps = 0
+					self.threshold = 20
+					self.change_x *= -1
+				elif self.rect.right > constants.SCREEN_WIDTH:
+					self.rect.right = constants.SCREEN_WIDTH
+					self.steps = 0
+					self.threshold = 20
+					self.change_x *= -1
+				
+				self.rect.y += self.change_y
+				# Check vertical collision
+				for wall in self.game.wall_list:
+					if self.rect.colliderect(wall.rect):
+						if self.change_y > 0:
+							self.rect.bottom = wall.rect.top
+						else:
+							self.rect.top = wall.rect.bottom
+						self.change_direction()
+				if self.rect.colliderect(self.game.finish.rect):
+					if self.change_y > 0:
+						self.rect.bottom = self.game.finish.rect.top
+					else:
+						self.rect.top = self.game.finish.rect.bottom
+					self.change_direction()
+						#self.change_y *= -1
+						#self.change_x = random.choice([5, -5])
+				if self.rect.top < 0:
+					self.rect.top = 0
+					self.steps = 0
+					self.threshold = 20
+					self.change_y *= -1
+				elif self.rect.bottom > constants.SCREEN_HEIGHT:
+					self.rect.bottom = constants.SCREEN_HEIGHT
+					self.steps = 0
+					self.threshold = 20
+					self.change_y *= -1
+				
+				if (self.change_x != 0) or (self.change_y != 0):
+					self.index += 1
+					if self.index >= 12:
+						self.index = 0
+					self.image = self.frames[self.index//4]
+		
+				for enemy in self.game.enemy_list:
+					if self.rect.colliderect(enemy.rect):
+						if enemy == self:
+							pass
+						else:
+							self.change_direction()
+							'''
+							self.change_x *= -1
+							self.change_y *= -1
+							'''
+				for bullet in self.game.bullet_list:
+					if self.rect.colliderect(bullet.rect):
+						try:
+							self.game.bullet_list.remove(self)
+						except ValueError:
+							pass
+						self.dead = True
+						#self.game.enemy_list.remove(self)
+			else:
+				self.cool_down -= 1
 		else:
 			if self.image != self.frames[3]:
 				self.image = self.frames[3]
