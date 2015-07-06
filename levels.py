@@ -48,14 +48,16 @@ class level1(level):
 		level.__init__(self, game)
 		#self.game = game
 		self.layout = [
-		"   wwwww eww",
-		" p h    e ww",
-		"     wwwwwww",
-		"www  wwwwwww",
-		"ee   wwwwwww",
-		"www  wwwwwww",
-		"   h   h   f",
-		"wwwwwwwwwwwww"
+		"   wwwww ewwwwwwwwww",
+		" p h    e wwwwwwwe w",
+		"     wwwwwwwwwwww ew",
+		"www  wwwwwwwwwwww  w",
+		"ee   wwwwwwwwwwwwwew",
+		"www  wwwwwwwwwwwww w",
+		"   h   h e   e     w",
+		"wwwwwwwwwwwwwwwww  w",
+		"wf      e  e  e    w",
+		"wwwwwwwwwwwwwwwwwwww"
 		]
 		self.create_level()
 		
@@ -68,9 +70,12 @@ class level2(level):
 		"wpwww    h    e    w",
 		"w e  e wwww  e e   w",
 		"ww  wwwwwww h  h   w",
-		" h  e   ew  e  e  fw",
+		" h  e   ew  e  e   w",
 		" e wwwwwwwwwwwwwwwww",
-		"wwwwwwwwww"
+		"  e    h   e      e ",
+		"wwwwwwwwww          ",
+		"f   e     e     e   ",
+		"wwwwwwwwwwwwwwwwwwww"
 		]
 		self.create_level()
 		
@@ -82,7 +87,11 @@ class level3(level):
 		"wp e  e   w    e   w",
 		"w    h    w h    e w",
 		"w h   e   w e   h  w",
-		"we e   e       e   f",
-		"wwwwwwwwwwwwwwwwwwww"
+		"we e   e       e   w",
+		"wwwwwwwwwwwwww  wwww",
+		"wwwwwwwwwww e      w",
+		"w h e    h     e   w",
+		"w    h   e  e      w",
+		"wwwwwwwwwwwwwwwwwwfw"
 		]
 		self.create_level()
