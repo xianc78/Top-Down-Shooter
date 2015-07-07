@@ -10,6 +10,7 @@ pygame.init()
 # In game text
 titleText = textfunctions.titleText()
 gameOverText = textfunctions.gameOverText()
+pauseText = textfunctions.pauseText()
 
 # Class that represents the game as a whole
 class Game:
@@ -61,6 +62,9 @@ class Game:
 		elif self.mode == "gameover":
 			screen.fill(constants.BLACK)
 			screen.blit(gameOverText.text, gameOverText.rect)
+		elif self.mode == "paused":
+			screen.fill(constants.BLACK)
+			screen.blit(pauseText.text, pauseText.rect)
 		pygame.display.update()
 		
 	def check_events(self, screen):
@@ -73,6 +77,8 @@ class Game:
 						self.player.shoot()
 					elif event.key == pygame.K_F12:
 						pygame.image.save(screen, "screenshot.png")
+					elif event.key == pygame.K_ESCAPE:
+						self.mode = "paused"
 					'''
 					# For debuging purposes
 					elif event.key == pygame.K_r:
@@ -93,7 +99,7 @@ class Game:
 			elif pressed[pygame.K_RIGHT]:
 				self.player.facing = "r"
 				self.player.change_x = 5
-		elif (self.mode == "menu"):
+		elif self.mode == "menu":
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					self.terminate()
@@ -105,6 +111,12 @@ class Game:
 					self.terminate()
 				elif event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
 					self.__init__()
+		elif self.mode == "paused":
+			for event in pygame.event.get():
+				if event.type == pygame.QUIT:
+					self.terminate()
+				elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+					self.mode = "game"
 		
 	def run_logic(self):
 		if self.mode == "game":

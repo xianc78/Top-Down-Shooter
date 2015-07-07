@@ -58,7 +58,7 @@ class Enemy:
 				if self.steps >= self.threshold:
 					self.steps = 0
 					#self.threshold = 20
-					self.threshold = random.randint(10, 20)
+					self.threshold = random.randint(10, 35)
 					self.cool_down = 20
 					self.change_direction()
 				self.rect.x += self.change_x
@@ -135,16 +135,16 @@ class Enemy:
 							self.change_x *= -1
 							self.change_y *= -1
 							'''
-				for bullet in self.game.bullet_list:
+			else:
+				self.cool_down -= 1
+			for bullet in self.game.bullet_list:
 					if self.rect.colliderect(bullet.rect):
 						try:
-							self.game.bullet_list.remove(self)
+							self.game.bullet_list.remove(bullet)
 						except ValueError:
 							pass
 						self.dead = True
 						#self.game.enemy_list.remove(self)
-			else:
-				self.cool_down -= 1
 		else:
 			if self.image != self.frames[3]:
 				self.image = self.frames[3]
