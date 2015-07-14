@@ -80,9 +80,9 @@ class level2(level):
 		"wwwwwwwwww          ",
 		"w   e     e     e   ",
 		"wwwwwwwwwwwwwwwwwww ",
-		"  e   e  e  e   h   ",
-		" e   e  h   h    h f",
-		"wwwwwwwwwwwwwwwwwwww"
+		"  e   e  e  e   h e ",
+		" e   e  h   h    h  ",
+		"fwwwwwwwwwwwwwwwwwww"
 		]
 		self.create_level()
 		
@@ -100,8 +100,8 @@ class level3(level):
 		"w h e    h     e   w",
 		"w    h   e  e      w",
 		"wwwwwwwwwwwwwwwwww w",
-		"w                  w",
-		"w                  w",
+		"w  e  e   e   e    w",
+		"w    e     e    e  w",
 		"wwwwwwwwwwwwwwwfwwww"
 		]
 		self.create_level()

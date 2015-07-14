@@ -99,7 +99,7 @@ class Player:
 					self.health += 10
 					self.game.healthpack_list.remove(healthpack)
 		if self.rect.colliderect(self.game.finish.rect):
-			#self.game.update_screen()
+			self.game.update_screen(pygame.display.get_surface())
 			self.game.levelno += 1
 			try:
 				self.game.set_level(self.game.level_list[self.game.levelno - 1])
