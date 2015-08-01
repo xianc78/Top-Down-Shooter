@@ -16,16 +16,16 @@ class Enemy:
 		
 		# Loading sprites from the sheet.
 		image = self.spritesheet.grab_image(0, 0, 16, 16)
-		image = pygame.transform.scale(image, (32, 32))
+		image = pygame.transform.scale2x(image)
 		self.frames.append(image)
 		image = self.spritesheet.grab_image(16, 0, 16, 16)
-		image = pygame.transform.scale(image, (32, 32))
+		image = pygame.transform.scale2x(image)
 		self.frames.append(image)
 		image = self.spritesheet.grab_image(32, 0, 16, 16)
-		image = pygame.transform.scale(image, (32, 32))
+		image = pygame.transform.scale2x(image)
 		self.frames.append(image)
 		image = self.spritesheet.grab_image(48, 0, 16, 16)
-		image = pygame.transform.scale(image, (32, 32))
+		image = pygame.transform.scale2x(image)
 		self.frames.append(image)
 		
 		

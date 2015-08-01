@@ -31,33 +31,33 @@ class Player:
 		# Loading sprites from sheet.
 		# Down facing images
 		image = self.spritesheet.grab_image(16, 0, 16, 16)
-		image = pygame.transform.scale(image, (32, 32))
+		image = pygame.transform.scale2x(image)
 		self.frames_d.append(image)
 		image = self.spritesheet.grab_image(32, 0, 16, 16)
-		image = pygame.transform.scale(image, (32, 32))
+		image = pygame.transform.scale2x(image)
 		self.frames_d.append(image)
 		# Up facing images
 		image = self.spritesheet.grab_image(64, 0, 16, 16)
-		image = pygame.transform.scale(image, (32, 32))
+		image = pygame.transform.scale2x(image)
 		self.frames_u.append(image)
 		image = self.spritesheet.grab_image(80, 0, 16, 16)
-		image = pygame.transform.scale(image, (32, 32))
+		image = pygame.transform.scale2x(image)
 		self.frames_u.append(image)
 		# Left facing images
 		image = self.spritesheet.grab_image(112, 0, 16, 16)
-		image = pygame.transform.scale(image, (32, 32))
+		image = pygame.transform.scale2x(image)
 		image = pygame.transform.flip(image, True, False)
 		self.frames_l.append(image)
 		image = self.spritesheet.grab_image(128, 0, 16, 16)
-		image = pygame.transform.scale(image, (32, 32))
+		image = pygame.transform.scale2x(image)
 		image = pygame.transform.flip(image, True, False)
 		self.frames_l.append(image)
 		# Right facing images
 		image = self.spritesheet.grab_image(112, 0, 16, 16)
-		image = pygame.transform.scale(image, (32, 32))
+		image = pygame.transform.scale2x(image)
 		self.frames_r.append(image)
 		image = self.spritesheet.grab_image(128, 0, 16, 16)
-		image = pygame.transform.scale(image, (32, 32))
+		image = pygame.transform.scale2x(image)
 		self.frames_r.append(image)
 		
 		self.index = 0

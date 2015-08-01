@@ -17,7 +17,7 @@ class Game:
 	bullet_list = []
 	enemy_list = []
 	wall_list = []
-	def __init__(self):
+	def __init__(self, mode):
 		self.score = 0
 		self.lives = 3
 		self.running = True
@@ -36,7 +36,7 @@ class Game:
 		self.player = self.level.player
 		self.finish = self.level.finish
 		#self.player = Player(0, 0, self)
-		self.mode = "menu"
+		self.mode = mode
 		self.mouse = pygame.image.load("resources/cursor.png")
 		pygame.mouse.set_visible(0)
 		
@@ -79,11 +79,9 @@ class Game:
 						pygame.image.save(screen, "screenshot.png")
 					elif event.key == pygame.K_ESCAPE:
 						self.mode = "paused"
-					'''
 					# For debuging purposes
 					elif event.key == pygame.K_r:
 						self.mode = "gameover"
-					'''
 			pressed = pygame.key.get_pressed()
 			self.player.change_x = 0
 			self.player.change_y = 0
@@ -110,7 +108,7 @@ class Game:
 				if event.type == pygame.QUIT:
 					self.terminate()
 				elif event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
-					self.__init__()
+					self.__init__("game")
 		elif self.mode == "paused":
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:

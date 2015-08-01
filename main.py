@@ -3,7 +3,7 @@ import constants
 pygame.init()
 from game import Game
 
-game = Game()
+game = Game("menu")
 
 screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
 pygame.display.set_caption("Top Down Shooter")
