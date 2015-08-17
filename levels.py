@@ -1,8 +1,10 @@
-import pygame, sys
+import pygame, sys, ConfigParser
 from enemy import Enemy
 from tile import *
 from player import Player
 pygame.init()
+
+confg = ConfigParser.RawConfigParser()
 
 class level():
 	bullet_list = None
@@ -10,23 +12,26 @@ class level():
 	tile_list = None
 	wall_list = None
 	healthpack_list = None
-	def __init__(self, game):
+	def __init__(self, game, file):
 		self.game = game
+		confg.read(file)
 		self.bullet_list = []
 		self.enemy_list = []
 		self.enemys = []
 		self.tile_list = []
 		self.wall_list = []
 		self.healthpack_list = []
+		self.create_level()
 	def create_level(self):
 		x = y = 0
+		self.layout = confg.get("map", "layout").split("\n")
 		for r in self.layout:
 			for tile in r:
 				if tile == "w":
 					self.wall_list.append(wall(x, y))
 				elif tile == "e":
 					self.enemy_list.append(Enemy(x, y, self.game))
-				elif tile == " ":
+				elif (tile == ".") or (tile == " "):
 					pass
 				elif tile == "p":
 					self.player = Player(x, y, self.game)
@@ -42,7 +47,8 @@ class level():
 				x += 32
 			x = 0
 			y += 32
-		
+
+'''
 class level1(level):
 	def __init__(self, game):
 		level.__init__(self, game)
@@ -105,3 +111,4 @@ class level3(level):
 		"wwwwwwwwwwwwwwwfwwww"
 		]
 		self.create_level()
+'''

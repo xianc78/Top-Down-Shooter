@@ -1,5 +1,5 @@
 # Import everything needed
-import pygame, sys
+import pygame, sys, glob
 import constants, textfunctions, sounds, levels
 from player import Player
 from bullet import Bullet
@@ -22,7 +22,12 @@ class Game:
 		self.lives = 3
 		self.running = True
 		# Set level
-		self.level_list = [levels.level1, levels.level2, levels.level3]
+		#self.level_list = [levels.level1, levels.level2, levels.level3]
+		self.level_list = []
+		files = glob.glob('resources/level?.map')
+		for i in files:
+			self.level_list.append(levels.level(self, i))
+		#self.level_list = [levels.level(self, "resources/level1.map"), levels.level(self, "resources/level2.map")]
 		self.levelno = 1
 		#self.level = levels.level2(self)
 		self.set_level(self.level_list[self.levelno -1])
@@ -30,12 +35,14 @@ class Game:
 		self.enemy_list = [Enemy(48, 67, self), Enemy(32, 124, self), Enemy(67, 176, self)]
 		self.wall_list = [wall(56, 74)]
 		'''
+		'''
 		# Set game objects
 		self.enemy_list = self.level.enemy_list
 		self.wall_list = self.level.wall_list
 		self.player = self.level.player
 		self.finish = self.level.finish
 		#self.player = Player(0, 0, self)
+		'''
 		self.mode = mode
 		self.mouse = pygame.image.load("resources/cursor.png")
 		pygame.mouse.set_visible(0)
@@ -125,7 +132,8 @@ class Game:
 				enemy.update()
 				
 	def set_level(self, level):
-		self.level = level(self)
+		#self.level = level(self)
+		self.level = level
 		self.enemy_list = self.level.enemy_list
 		self.wall_list = self.level.wall_list
 		try:
