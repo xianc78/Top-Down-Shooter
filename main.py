@@ -16,6 +16,7 @@ def main():
 		game.update_screen(screen)
 		game.check_events(screen)
 		game.run_logic()
+		game.show_output()
 		clock.tick(constants.FPS)
 		
 if __name__ == "__main__":

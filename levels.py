@@ -14,7 +14,8 @@ class level():
 	healthpack_list = None
 	def __init__(self, game, file):
 		self.game = game
-		confg.read(file)
+		self.file = file
+		confg.read(self.file)
 		self.bullet_list = []
 		self.enemy_list = []
 		self.enemys = []

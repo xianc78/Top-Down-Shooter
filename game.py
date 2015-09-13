@@ -1,5 +1,5 @@
 # Import everything needed
-import pygame, sys, glob
+import pygame, sys, glob, os
 import constants, textfunctions, sounds, levels
 from player import Player
 from bullet import Bullet
@@ -43,6 +43,7 @@ class Game:
 		self.finish = self.level.finish
 		#self.player = Player(0, 0, self)
 		'''
+		self.screen = pygame.display.get_surface()
 		self.mode = mode
 		self.mouse = pygame.image.load("resources/cursor.png")
 		pygame.mouse.set_visible(0)
@@ -87,8 +88,10 @@ class Game:
 					elif event.key == pygame.K_ESCAPE:
 						self.mode = "paused"
 					# For debuging purposes
+					'''
 					elif event.key == pygame.K_r:
 						self.mode = "gameover"
+					'''
 			pressed = pygame.key.get_pressed()
 			self.player.change_x = 0
 			self.player.change_y = 0
@@ -149,6 +152,12 @@ class Game:
 			raw_input("<press enter>")
 			self.terminate()
 		self.healthpack_list = self.level.healthpack_list
+		
+	def show_output(self):
+		os.system("cls")
+		print "Level: " + self.level.file
+		print "Player location: " + str(self.player.rect.x) + ", " + str(self.player.rect.y)
+		print "Number of enemies: " + str(len(self.enemy_list))
 		
 	def terminate(self):
 		pygame.quit()
